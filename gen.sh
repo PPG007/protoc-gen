@@ -4,6 +4,7 @@ protoc -I ./proto/ --go_out=proto \
         --go-grpc_out=proto \
         --go_opt paths=source_relative \
         --go-grpc_opt paths=source_relative proto/*.proto
+protoc-go-inject-tag -input="proto/*.pb.go"
 
 if test -f proto/service.yml
 then
@@ -17,6 +18,7 @@ then
     --grpc-gateway_opt grpc_api_configuration=proto/service.yml \
     --openapiv2_opt grpc_api_configuration=proto/service.yml \
     --openapiv2_out=proto proto/*.proto
+    protoc-go-inject-tag -input="proto/*.pb.go"
 fi
 
 for file in proto/*
@@ -43,6 +45,7 @@ do
             --openapiv2_opt grpc_api_configuration=$file/service.yml \
             --openapiv2_out=proto $file/*.proto
         fi
+        protoc-go-inject-tag -input="$file/*.pb.go"
     fi
 done
 

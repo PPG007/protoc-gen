@@ -23,7 +23,8 @@ RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin && \
     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest && \
     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest && \
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest && \
-    go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+    go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest && \
+    go install github.com/favadi/protoc-go-inject-tag@latest
 
 # 在基础镜像 /etc/my_init.d/ 中的脚本会在容器启动时执行
 COPY gen.sh /etc/my_init.d/gen.sh
