@@ -26,7 +26,6 @@ RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin && \
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest && \
     go install github.com/favadi/protoc-go-inject-tag@latest
 
-# 在基础镜像 /etc/my_init.d/ 中的脚本会在容器启动时执行
-COPY gen.sh /etc/my_init.d/gen.sh
+COPY gen.sh ${GOPATH}/gen.sh
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
